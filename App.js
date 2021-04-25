@@ -1,53 +1,33 @@
 import React, { Component } from 'react'
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-} from 'react-native'
-
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Login from './src/screens/Login.js'
+import SignUp from './src/screens/SignUp.js';
 class App extends Component {
-  state = {
-    count: 0
-  }
 
-  onPress = () => {
-    this.setState({
-      count: this.state.count + 1
-    })
+  constructor(props) {
+    super(props)
+    Stack = createStackNavigator();
   }
-
- render() {
+  render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity
-         style={styles.button}
-         onPress={this.onPress}
-        >
-         <Text>Click me</Text>
-        </TouchableOpacity>
-        <View>
-          <Text>
-            You clicked { this.state.count } times
-          </Text>
-        </View>
-      </View>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator headerMode="none" initialRouteName="Login">
+            <Stack.Screen
+              name="Login"
+              component={Login}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10
-  }
-})
 
 export default App;
