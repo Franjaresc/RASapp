@@ -7,36 +7,19 @@ import {
   TextInput,
 } from 'react-native'
 
-class Login extends Component {
-  constructor(props) {
-    super(props)
 
-  }
-  state = {
-    email: "",
-    password: "",
-  }
-
-  onPressLogin = () => {
-    
-  }
-  onPressSignUp = () => {
-    
-  }
-  changeTextInputEmail = (inputUsername) => {
-    this.setState({
-      email: inputUsername
-    })
-  }
-  changeTextInputPassword = (inputUsername) => {
-    this.setState({
-      password: inputUsername
-    })
-  }
-
-  render() {
-    return (
-      <View style={Styles.container}>
+const Login = ({navigation}) => {
+  const onPressSignUp = () => {
+    navigation.navigate('SignUp')
+  };
+  const onPressLogin = () => {
+    navigation.navigate('SignUp')
+  };
+  const onPressForgetPassword = () => {
+    navigation.navigate('SignUp')
+  };
+  return (
+    <View style={Styles.container}>
         <TextInput
           style={Styles.textInput}
           onChangeText={this.changeTextInputEmail}
@@ -50,7 +33,7 @@ class Login extends Component {
         />
         <TouchableOpacity
           style={Styles.button}
-          onPress={this.onPressLogin}
+          onPress={onPressLogin}
         >
           <Text>INGRESAR</Text>
         </TouchableOpacity>
@@ -60,7 +43,7 @@ class Login extends Component {
           </Text>
           <TouchableOpacity
             style={Styles.buttonWithoutBackgroudColor}
-            onPress={this.onPressLogin}
+            onPress={onPressSignUp}
           >
             <Text style={Styles.buttonWithoutBackgroudColorText}>Registrese aquí</Text>
           </TouchableOpacity>
@@ -71,16 +54,14 @@ class Login extends Component {
           </Text>
           <TouchableOpacity
             style={Styles.buttonWithoutBackgroudColor}
-            onPress={this.onPressLogin}
+            onPress={onPressForgetPassword}
           >
             <Text style={Styles.buttonWithoutBackgroudColorText}>Recuperar contraseña</Text>
           </TouchableOpacity>
         </View>
         
       </View>
-    )
-  }
-}
-
+  );
+};
 
 export default Login;

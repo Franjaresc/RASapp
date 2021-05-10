@@ -1,110 +1,97 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Styles from '../styles/Styles.js'
+import DropDownPicker from 'react-native-dropdown-picker'
+
 import {
   TouchableOpacity,
   Text,
   View,
   TextInput,
+  KeyboardAvoidingView,
 } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props)
+const SignUp = ({ navigation }) => {
+  const [state, setState] = useState({
+    name: '',
+    email: '',
+    cEmail: '',
+    password: '',
+    cPassword: '',
+    ocupation: '',
+  });
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: 'Medico', value: 'medico' },
+    { label: 'Estudiante', value: 'estudiante' }
+  ]);
 
-  }
-  state = {
-    nombre: "",
-    email: "",
-    cEmail: "",
-    password: "",
-    cPassword: "",
-    occupation: "",
-  }
-
-  onPressSignUp = () => {
-    
-  }
-  changeTextInputName = (input) => {
-    this.setState({
-      nombre: input
-    })
-  }
-  changeTextInputEmail = (input) => {
-    this.setState({
-      email: input
-    })
-  }
-  changeTextInputCEmail = (input) => {
-    this.setState({
-      cEmail: input
-    })
-  }
-  changeTextInputPassword = (input) => {
-    this.setState({
-      password: input
-    })
-  }
-  changeTextInputCPassword = (input) => {
-    this.setState({
-      cPassword: input
-    })
-  }
-  changeTextInputOccupation = (input) => {
-    this.setState({
-      occupation: input
-    })
+  const onPressSignUp = () => {
+    navigation.navigate('Rasopathies')
+  };
+  const handleChangeText = (name, value) => {
+    setState({ ...state, [name]: value })
   }
 
-  render() {
-    return (
+  return (
+    <ScrollView contentContainerStyle={Styles.containerScrollView}>
       <View style={Styles.container}>
+
+
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputName}
+          onChangeText={(value) => handleChangeText('name', value)}
           placeholder="Nombre completo"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputEmail}
+          onChangeText={(value) => handleChangeText('email', value)}
           secureTextEntry={true}
           placeholder="Correo electrónico"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputCEmail}
+          onChangeText={(value) => handleChangeText('cEmail', value)}
           secureTextEntry={true}
           placeholder="Confirmación correo Electrónico"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputPassword}
+          onChangeText={(value) => handleChangeText('password', value)}
           secureTextEntry={true}
           placeholder="Contraseña"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputCPassword}
+          onChangeText={(value) => handleChangeText('cPassword', value)}
           secureTextEntry={true}
           placeholder="Confirmación Contraseña"
         />
-        <TextInput
-          style={Styles.textInput}
-          onChangeText={this.changeTextInputOccupation}
-          secureTextEntry={true}
-          placeholder="Correo Electrónico"
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          placeholder="Ocupation"
+          searchable={false}
+          containerStyle={Styles.dropDownPicker}
         />
+
+
         <TouchableOpacity
           style={Styles.button}
-          onPress={this.onPressLogin}
+          onPress={onPressSignUp}
         >
           <Text>REGISTRARSE</Text>
         </TouchableOpacity>
-        
-        
-      </View>
-    )
-  }
-}
 
+
+      </View>
+    </ScrollView>
+  );
+};
 
 export default SignUp;
