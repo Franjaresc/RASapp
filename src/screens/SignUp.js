@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import Styles from '../styles/Styles.js'
+import React, {
+  useContext,
+  useState
+} from 'react'
+import Styles from '../styles/Styles'
 import DropDownPicker from 'react-native-dropdown-picker'
-
 import {
   TouchableOpacity,
   Text,
   View,
   TextInput,
-  KeyboardAvoidingView,
+  Alert,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { AuthContext } from '../../firebase/AuthProvider'
 
 const SignUp = ({ navigation }) => {
-  const [state, setState] = useState({
-    name: '',
-    email: '',
-    cEmail: '',
-    password: '',
-    cPassword: '',
-    ocupation: '',
-  });
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const { register } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -28,11 +28,23 @@ const SignUp = ({ navigation }) => {
   ]);
 
   const onPressSignUp = () => {
-    navigation.navigate('Rasopathies')
+    if(password==confirmPassword){
+      register(email, password, name, value)
+    }else{
+      Alert.alert(
+        "Error",
+        "Las contraseñas no coinciden",
+        [
+          {
+            text: "Cancelar",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "Aceptar", onPress: () => console.log("OK Pressed") }
+        ]
+      );
+    }
   };
-  const handleChangeText = (name, value) => {
-    setState({ ...state, [name]: value })
-  }
 
   return (
     <ScrollView contentContainerStyle={Styles.containerScrollView}>
@@ -41,30 +53,23 @@ const SignUp = ({ navigation }) => {
 
         <TextInput
           style={Styles.textInput}
-          onChangeText={(value) => handleChangeText('name', value)}
+          onChangeText={(userName) => setName(userName)}
           placeholder="Nombre completo"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={(value) => handleChangeText('email', value)}
-          secureTextEntry={true}
+          onChangeText={(userEmail) => setEmail(userEmail)}
           placeholder="Correo electrónico"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={(value) => handleChangeText('cEmail', value)}
-          secureTextEntry={true}
-          placeholder="Confirmación correo Electrónico"
-        />
-        <TextInput
-          style={Styles.textInput}
-          onChangeText={(value) => handleChangeText('password', value)}
+          onChangeText={(userPassword) => setPassword(userPassword)}
           secureTextEntry={true}
           placeholder="Contraseña"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={(value) => handleChangeText('cPassword', value)}
+          onChangeText={(userPassword) => setConfirmPassword(userPassword)}
           secureTextEntry={true}
           placeholder="Confirmación Contraseña"
         />

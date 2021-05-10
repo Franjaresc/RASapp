@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "216534378700",
+    "firebase_url": "https://basesdedatospropias.firebaseio.com",
+    "project_id": "basesdedatospropias",
+    "storage_bucket": "basesdedatospropias.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216534378700:android:61452644dd1bf8b3977a69",
+        "android_client_info": {
+          "package_name": "com.rasapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216534378700-vkc028r736ups222117d0dmdf5a6ts07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTiz60wYMjBWYDWcBC4Y2RfQ7XlkBEWCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216534378700-vkc028r736ups222117d0dmdf5a6ts07.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "216534378700-ug6ms3phmvd9ugjrhds53qbp9tnu1vkm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.RASapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

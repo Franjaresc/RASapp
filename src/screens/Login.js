@@ -1,33 +1,39 @@
-import React, { Component } from 'react'
-import Styles from '../styles/Styles.js'
+import React, { useContext, useState } from 'react'
+import Styles from '../styles/Styles'
 import {
   TouchableOpacity,
   Text,
   View,
   TextInput,
+  ScrollView,
 } from 'react-native'
+import { AuthContext } from '../../firebase/AuthProvider';
 
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const { login } = useContext(AuthContext);
   const onPressSignUp = () => {
     navigation.navigate('SignUp')
   };
   const onPressLogin = () => {
-    navigation.navigate('SignUp')
+    login(email,password)
   };
   const onPressForgetPassword = () => {
     navigation.navigate('SignUp')
   };
   return (
-    <View style={Styles.container}>
+    <ScrollView contentContainerStyle={Styles.containerScrollView}>
+      <View style={Styles.container}>
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputEmail}
+          onChangeText={(userEmail) => setEmail(userEmail)}
           placeholder="Correo electrónico"
         />
         <TextInput
           style={Styles.textInput}
-          onChangeText={this.changeTextInputPassword}
+          onChangeText={(userPassword) => setPassword(userPassword)}
           secureTextEntry={true}
           placeholder="Contraseña"
         />
@@ -59,8 +65,10 @@ const Login = ({navigation}) => {
             <Text style={Styles.buttonWithoutBackgroudColorText}>Recuperar contraseña</Text>
           </TouchableOpacity>
         </View>
-        
+
       </View>
+    </ScrollView>
+
   );
 };
 
