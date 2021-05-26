@@ -1,5 +1,5 @@
 import React from 'react';
-import Providers from './navigation/Index';
+import Providers from './src/navigation/Index';
 
 const App = () => {
   return <Providers />;

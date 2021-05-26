@@ -4,27 +4,12 @@ import {
   TouchableOpacity,
   Text,
   SafeAreaView,
-  StyleSheet,
-  StatusBar,
-  View,
-  TextInput,
   FlatList,
+  Alert, 
 } from 'react-native'
-
-const rasopathies = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
+import users from "../data/users";
+import { FlatListComponent, Separator } from "../components/FlatListComponent";
+import {Header} from '../components/Header'
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
@@ -33,48 +18,54 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 const Rasopathies = ({ navigation }) => {
+  const createAlert = () =>{
+    Alert.alert(
+      "Alert Title",
+      "My Alert Msg",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+  }
+    
+    
   const [selectedId, setSelectedId] = useState(null);
 
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-    const color = item.id === selectedId ? 'white' : 'black';
-
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={{ backgroundColor }}
-        textColor={{ color }}
-      />
-    );
-  };
-
+  
   return (
-    <SafeAreaView style={Styles.container}>
+    <SafeAreaView style={Styles.containerAppStack}>
+      <Header 
+        title={"RASopatías"}
+      />
       <FlatList
-        data={rasopathies}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
+        data={users}
+        keyExtractor={item => {
+          return `${item.id.value}-${item.phone}`;
+        }}
+        renderItem={({ item }) => {
+          const name = `${item.name.first} ${item.name.last}`;
+    
+          return (
+            <FlatListComponent
+              image={{ uri: item.picture.thumbnail }}
+              title={name}
+              subtitle={item.email}
+              onPress={createAlert}
+            />
+          );
+        }}
+        ItemSeparatorComponent={Separator}
+        ListHeaderComponent={() => <Separator />}
+        ListFooterComponent={() => <Separator />}
       />
     </SafeAreaView>
   );
-};
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-});
 
+}
 
 export default Rasopathies;

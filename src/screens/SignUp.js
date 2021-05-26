@@ -10,11 +10,13 @@ import {
   View,
   TextInput,
   Alert,
+  SafeAreaView,
+  Image,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { AuthContext } from '../../firebase/AuthProvider'
+import { AuthContext } from '../firebase/AuthProvider'
 
-const SignUp = ({ navigation }) => {
+const SignUp = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -23,79 +25,89 @@ const SignUp = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    { label: 'Medico', value: 'medico' },
-    { label: 'Estudiante', value: 'estudiante' }
+    { label: 'Medico', value: 'Medico' },
+    { label: 'Estudiante', value: 'Estudiante' }
   ]);
 
   const onPressSignUp = () => {
-    if(password==confirmPassword){
-      register(email, password, name, value)
-    }else{
+    if (!(email == null || email == "") && !(password == null || password == "")) {
+      if (password == confirmPassword) {
+        register(email, password, name, value)
+      } else {
+        Alert.alert(
+          "Error",
+          "Las contraseñas no coinciden",
+          [
+            { text: "Aceptar", onPress: () => console.log("OK Pressed") }
+          ]
+        );
+      }
+    }
+    else {
       Alert.alert(
-        "Error",
-        "Las contraseñas no coinciden",
+        "Alerta",
+        "Digite email y contraseña",
         [
-          {
-            text: "Cancelar",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
-          },
           { text: "Aceptar", onPress: () => console.log("OK Pressed") }
         ]
       );
     }
+
   };
 
   return (
-    <ScrollView contentContainerStyle={Styles.containerScrollView}>
-      <View style={Styles.container}>
+    <SafeAreaView style={Styles.containerAppStack}>
+      <ScrollView contentContainerStyle={Styles.containerScrollView}>
+        <View style={Styles.container}>
+
+          <Image source={require('../assets/Logo.png')} style={Styles.logo} />
+          <TextInput
+            style={Styles.textInput}
+            onChangeText={(userName) => setName(userName)}
+            placeholder="Nombre completo"
+          />
+          <TextInput
+            style={Styles.textInput}
+            onChangeText={(userEmail) => setEmail(userEmail)}
+            placeholder="Correo electrónico"
+          />
+          <TextInput
+            style={Styles.textInput}
+            onChangeText={(userPassword) => setPassword(userPassword)}
+            secureTextEntry={true}
+            placeholder="Contraseña"
+          />
+          <TextInput
+            style={Styles.textInput}
+            onChangeText={(userPassword) => setConfirmPassword(userPassword)}
+            secureTextEntry={true}
+            placeholder="Confirmación contraseña"
+          />
+          <DropDownPicker
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            placeholder="Ocupación"
+            searchable={false}
+            containerStyle={Styles.dropDownPicker}
+          />
 
 
-        <TextInput
-          style={Styles.textInput}
-          onChangeText={(userName) => setName(userName)}
-          placeholder="Nombre completo"
-        />
-        <TextInput
-          style={Styles.textInput}
-          onChangeText={(userEmail) => setEmail(userEmail)}
-          placeholder="Correo electrónico"
-        />
-        <TextInput
-          style={Styles.textInput}
-          onChangeText={(userPassword) => setPassword(userPassword)}
-          secureTextEntry={true}
-          placeholder="Contraseña"
-        />
-        <TextInput
-          style={Styles.textInput}
-          onChangeText={(userPassword) => setConfirmPassword(userPassword)}
-          secureTextEntry={true}
-          placeholder="Confirmación Contraseña"
-        />
-        <DropDownPicker
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-          placeholder="Ocupation"
-          searchable={false}
-          containerStyle={Styles.dropDownPicker}
-        />
+          <TouchableOpacity
+            style={Styles.buttonPrimary}
+            onPress={onPressSignUp}
+          >
+            <Text style={Styles.buttonText}>REGISTRARSE</Text>
+          </TouchableOpacity>
 
 
-        <TouchableOpacity
-          style={Styles.button}
-          onPress={onPressSignUp}
-        >
-          <Text>REGISTRARSE</Text>
-        </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
 
-
-      </View>
-    </ScrollView>
   );
 };
 

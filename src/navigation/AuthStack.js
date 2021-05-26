@@ -1,7 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack';
-import Login from '../src/screens/Login';
-import SignUp from '../src/screens/SignUp';
+import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
+import ForgotPassword from '../screens/ForgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,10 @@ const AuthStack = () => {
             <Stack.Screen
               name="SignUp"
               component={SignUp}
+            />
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPassword}
             />
           </Stack.Navigator>
     )
