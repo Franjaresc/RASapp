@@ -111,6 +111,39 @@ export const AuthProvider = ({ children }) => {
             );
           }
         },
+        changePassword: async ( oldPassword,password ) => {
+          try {
+            console.log(user.email)
+            console.log(oldPassword)
+            const emailCred = await auth.EmailAuthProvider.credential(user.email,oldPassword)
+            console.log(emailCred)
+            await auth().currentUser.reauthenticateWithCredential(emailCred)
+            .then(()=>{
+              auth().currentUser.updatePassword(password)
+            })
+            .then(()=>{
+              console.log("contraseña cambiada")
+            })
+            .catch(e => {
+              Alert.alert(
+                "Información",
+                e.message,
+                [
+                  { text: "Aceptar", onPress: () => console.log("OK Pressed") }
+                ]
+              );
+              
+            });
+          } catch (e) {
+            Alert.alert(
+              "Información",
+              e.message,
+              [
+                { text: "Aceptar", onPress: () => console.log("OK Pressed") }
+              ]
+            );
+          }
+        }
         
       }}>
       {children}

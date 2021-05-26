@@ -112,13 +112,13 @@ const EdidProfile = ({ navigation }) => {
                         style={Styles.buttonSecundary}
                         onPress={onPressSave}
                     >
-                        <Text>GUARDAR</Text>
+                        <Text style={Styles.buttonText}>GUARDAR</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Styles.buttonSecundary}
                         onPress={onPressCancel}
                     >
-                        <Text>CANCELAR</Text>
+                        <Text style={Styles.buttonText}>CANCELAR</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -31,7 +31,7 @@ const Styles = StyleSheet.create({
     backgroundColor: '#67AB6A',
     borderRadius: 20,
     padding: 10,
-    margin: 10,
+    margin: 5,
     height: 40,
     width: 150,
   },
@@ -45,7 +45,7 @@ const Styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#3a3a3a",
+    color: "#4158A0",
     height: 40,
     width: 300,
     margin: 10,
@@ -104,7 +104,7 @@ const Styles = StyleSheet.create({
     marginTop: 2
   },
   bodyText:{
-    color: "#666",
+    color: "#4158A0",
     fontSize: 15,
   },
   separator: {
@@ -130,6 +130,17 @@ const Styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#fff"
+  },
+  popUp:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#fff",
+  },
+  titlePopUp:{
+    margin:10,
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#4158A0"
   },
 
 
