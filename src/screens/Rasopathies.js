@@ -11,11 +11,7 @@ import users from "../data/users";
 import { FlatListComponent, Separator } from "../components/FlatListComponent";
 import {Header} from '../components/Header'
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.title, textColor]}>{item.title}</Text>
-  </TouchableOpacity>
-);
+
 
 const Rasopathies = ({ navigation }) => {
   const createAlert = () =>{

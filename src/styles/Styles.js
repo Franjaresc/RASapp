@@ -142,7 +142,9 @@ const Styles = StyleSheet.create({
     fontWeight: "600",
     color: "#4158A0"
   },
-
+  checkbox: {
+    alignSelf: "center",
+  },
 
 })
 export default Styles;

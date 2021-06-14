@@ -1,6 +1,6 @@
 
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, CheckBox } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import Styles from '../styles/Styles'
 
 export const FlatListComponent = ({ image, title, subtitle, onPress }) => (

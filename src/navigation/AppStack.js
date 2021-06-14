@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Rasopathies from '../screens/Rasopathies'
 import Profile from '../screens/Profile';
 import EdidProfile from '../screens/EdidProfile';
+import Diagnostic from '../screens/Diagnostic'
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
 
@@ -43,6 +44,10 @@ export const AppStack = () => {
         <Tab.Screen
           name="Perfil"
           component={PerfilScreens}
+        />
+        <Tab.Screen
+          name="Diagnostic"
+          component={Diagnostic}
         />
       </Tab.Navigator>
 
