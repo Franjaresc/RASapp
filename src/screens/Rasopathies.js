@@ -7,30 +7,20 @@ import {
   FlatList,
   Alert, 
 } from 'react-native'
-import users from "../data/users";
+import RAS from "../data/RasopathiesDB";
 import { FlatListComponent, Separator } from "../components/FlatListComponent";
 import {Header} from '../components/Header'
 
 
 
+
 const Rasopathies = ({ navigation }) => {
-  const createAlert = () =>{
-    Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ]
-    );
-  }
+  
     
-    
-  const [selectedId, setSelectedId] = useState(null);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [sintomas, setSintomas] = useState("");
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
 
   
   return (
@@ -39,19 +29,18 @@ const Rasopathies = ({ navigation }) => {
         title={"RASopatías"}
       />
       <FlatList
-        data={users}
+        data={RAS}
         keyExtractor={item => {
-          return `${item.id.value}-${item.phone}`;
+          return `${item.sindrome}-${item.genes}`;
         }}
         renderItem={({ item }) => {
-          const name = `${item.name.first} ${item.name.last}`;
+          
     
           return (
             <FlatListComponent
-              image={{ uri: item.picture.thumbnail }}
-              title={name}
-              subtitle={item.email}
-              onPress={createAlert}
+              
+              title={item.sindrome}
+              subtitle={item.genes}
             />
           );
         }}
@@ -59,6 +48,7 @@ const Rasopathies = ({ navigation }) => {
         ListHeaderComponent={() => <Separator />}
         ListFooterComponent={() => <Separator />}
       />
+      
     </SafeAreaView>
   );
 
