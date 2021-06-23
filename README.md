@@ -15,3 +15,5 @@ npx react-native run-android
 
 ## Repositories
 https://www.npmjs.com/package/react-native-dropdown-picker
+
+https://www.npmjs.com/package/radio-buttons-react-native

@@ -19,15 +19,45 @@ export const AppStack = () => {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, tintColor }) => {
             if (route.name === 'RASopatías') {
-              return <Image
-                source={require('../assets/ListIcon.png')}
+              if (focused) {
+                return <Image
+                source={require('../assets/Lista01.png')}
                 style={{ height: 25, width: 25, tintColor: tintColor }}
               />;
+              } else {
+                return <Image
+                source={require('../assets/Lista02.png')}
+                style={{ height: 25, width: 25, tintColor: tintColor }}
+              />;
+              }
+              
             } else if (route.name === 'Perfil') {
-              return <Image
-                            source={require('../assets/UserIcon.png')}
+              if (focused) {
+                return <Image
+                            source={require('../assets/perfil02.png')}
                             style={{ height: 35, width: 35, tintColor: tintColor }}
                         />;
+              } else {
+                return <Image
+                            source={require('../assets/perfil01.png')}
+                            style={{ height: 35, width: 35, tintColor: tintColor }}
+                        />;
+              }
+              
+            }
+            else if (route.name === 'Diagnóstico') {
+              if (focused) {
+                return <Image
+                            source={require('../assets/List01.png')}
+                            style={{ height: 35, width: 35, tintColor: tintColor }}
+                        />;
+              } else {
+                return <Image
+                            source={require('../assets/List02.png')}
+                            style={{ height: 35, width: 35, tintColor: tintColor }}
+                        />;
+              }
+              
             }
           },
         })}
@@ -38,6 +68,10 @@ export const AppStack = () => {
 
       >
         <Tab.Screen
+          name="Diagnóstico"
+          component={Diagnostic}
+        />
+        <Tab.Screen
           name="RASopatías"
           component={Rasopathies}
         />
@@ -45,10 +79,7 @@ export const AppStack = () => {
           name="Perfil"
           component={PerfilScreens}
         />
-        <Tab.Screen
-          name="Diagnostic"
-          component={Diagnostic}
-        />
+        
       </Tab.Navigator>
 
     </SafeAreaProvider>

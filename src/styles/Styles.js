@@ -17,6 +17,12 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: "#fff",
   },
+  containerRadioButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: "#fff",
+    margin: 2,
+  },
   buttonPrimary: {
     alignItems: 'center',
     backgroundColor: '#67AB6A',
@@ -96,16 +102,23 @@ const Styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#666"
+    color: "#4158A0"
   },
   subtitle: {
-    color: "#666",
+    color: "#67AB6A",
     fontSize: 16,
     marginTop: 2
   },
   bodyText:{
     color: "#4158A0",
     fontSize: 15,
+  },
+  bodyTextResul:{
+    color: "#4158A0",
+    fontSize: 15,
+    width: 300, 
+    height: 'auto',
+    textAlign:'center'
   },
   separator: {
     backgroundColor: "#67AB6A",
@@ -126,6 +139,10 @@ const Styles = StyleSheet.create({
     width: 300, 
     height: 119 
   },
+  appImage: {
+    width: 90, 
+    height: 90,
+  },
   headerText:{
     fontSize: 18,
     fontWeight: "600",
@@ -135,6 +152,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: "#fff",
+    borderRadius: 20,
   },
   titlePopUp:{
     margin:10,
@@ -144,6 +162,35 @@ const Styles = StyleSheet.create({
   },
   checkbox: {
     alignSelf: "center",
+  },
+  radioButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+  radioButtonColumn: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+  radioButtonBox: {
+    width: 150, 
+    height: 50,
+    margin:5,
+  },
+  radioButtonBoxColumn: {
+    width: 300, 
+    height: 'auto',
+    margin:5,
+  },
+  radioButtonText: {
+    
+    fontWeight: "600",
+    color: "#4158A0",
+    textAlign: 'justify',
+    marginLeft: 10,
   },
 
 })
